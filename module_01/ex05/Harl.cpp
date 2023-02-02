@@ -30,7 +30,7 @@ void	Harl::info(void) const
 
 void	Harl::warning(void) const
 {
-	std::cout << " think I deserve to have some extra bacon"
+	std::cout << "I think I deserve to have some extra bacon"
 	" for free. I’ve been coming for"
 	"years whereas you started working here since last month." << std::endl;
 }

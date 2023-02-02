@@ -3,8 +3,6 @@
 
 #include "Defs.hpp"
 
-// typedef void (Harl::*harlMemFn) (void);
-
 class Harl
 {
 	public:

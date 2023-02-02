@@ -61,5 +61,8 @@ void	Harl::complain(std::string level) const
 			(this->*fComplain[2])();
 		case 3:
 			(this->*fComplain[3])();
+			break;
+		default:
+			std::cout << "Unvalid complain level" << std::endl;
 	}
 }

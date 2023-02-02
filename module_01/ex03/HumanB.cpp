@@ -3,6 +3,7 @@
 HumanB::HumanB(std::string name)
 : nameB(name)
 {
+	weaponB = nullptr;
 };
 
 void	HumanB::setWeapon(Weapon* weapon)
