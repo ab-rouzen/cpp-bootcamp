@@ -101,12 +101,78 @@ Fixed	Fixed::operator/(const Fixed &op2) const
 	return (tmp);
 }
 
-Fixed		min(const Fixed &op1, const Fixed &op2)
+bool	Fixed::operator<(const Fixed &op2) const
+{
+	return (this->number < op2.number);
+}
+
+bool	Fixed::operator<=(const Fixed &op2) const
+{
+	return (this->number <= op2.number);
+}
+
+bool	Fixed::operator>(const Fixed &op2) const
+{
+	return (this->number > op2.number);
+}
+
+bool	Fixed::operator>=(const Fixed &op2) const
+{
+	return (this->number >= op2.number);
+}
+
+bool	Fixed::operator==(const Fixed &op2) const
+{
+	return (this->number == op2.number);
+}
+
+bool	Fixed::operator!=(const Fixed &op2) const
+{
+	return (this->number != op2.number);
+}
+
+Fixed&	Fixed::operator++()
+{
+	this->number += one;
+	return *this;
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	tmp(*this);
+	this->number += one;
+	return tmp;
+}
+
+Fixed&	Fixed::operator--()
+{
+	this->number -= one;
+	return *this;
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	tmp(*this);
+	this->number -= one;
+	return (tmp);
+}
+
+const Fixed&		Fixed::min(const Fixed &op1, const Fixed &op2)
 {
 	return (op1.getRawBits() > op2.getRawBits() ? op2 : op1);
 }
 
-Fixed		max(const Fixed &op1, const Fixed &op2)
+const Fixed&		Fixed::max(const Fixed &op1, const Fixed &op2)
+{
+	return (op1.getRawBits() > op2.getRawBits() ? op1 : op2);
+}
+
+Fixed&				Fixed::min(Fixed &op1, Fixed &op2)
+{
+	return (op1.getRawBits() > op2.getRawBits() ? op2 : op1);
+}
+
+Fixed&				Fixed::max(Fixed &op1, Fixed &op2)
 {
 	return (op1.getRawBits() > op2.getRawBits() ? op1 : op2);
 }

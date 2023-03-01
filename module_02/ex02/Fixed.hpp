@@ -20,13 +20,26 @@ class Fixed
 		Fixed	operator-(const Fixed &op2) const;
 		Fixed	operator*(const Fixed &op2) const;
 		Fixed	operator/(const Fixed &op2) const;
+		bool	operator>(const Fixed &op2) const;
+		bool	operator>=(const Fixed &op2) const;
+		bool	operator<(const Fixed &op2) const;
+		bool	operator<=(const Fixed &op2) const;
+		bool	operator==(const Fixed &op2) const;
+		bool	operator!=(const Fixed &op2) const;
+		Fixed&	operator++();
+		Fixed	operator++(int);
+		Fixed&	operator--();
+		Fixed	operator--(int);
+		static const Fixed&			min(const Fixed &op1, const Fixed &op2);
+		static const Fixed&			max(const Fixed &op1, const Fixed &op2);
+		static Fixed&				min(Fixed &op1, Fixed &op2);
+		static Fixed&				max(Fixed &op1, Fixed &op2);
 	
 	private:
 		int					number;
 		static const int	frac = 8;
+		static const int	one = 1;
 };
 
 std::ostream &operator<<(std::ostream &buf, const Fixed &f);
-Fixed		min(const Fixed &op1, const Fixed &op2);
-Fixed		max(const Fixed &op1, const Fixed &op2);
 #endif	// FIXED_H
