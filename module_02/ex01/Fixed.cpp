@@ -21,7 +21,6 @@ Fixed::Fixed(const Fixed &f)
 Fixed::Fixed(const int &in)
 {
 	number = in << frac;
-	//std::cout << number << std::endl;
 }
 
 Fixed::Fixed(const float &fn)
@@ -58,10 +57,6 @@ int	Fixed::toInt(void) const
 
 std::ostream &operator<<(std::ostream &buf, const Fixed &f)
 {
-	// int	tmp = f.getRawBits();
-	// int	main = tmp >> FRAC;
-	// int	frac = tmp << FRAC;
-	// buf << main << '.' << frac;
 	buf << f.toFloat();
 	return (buf);
 }

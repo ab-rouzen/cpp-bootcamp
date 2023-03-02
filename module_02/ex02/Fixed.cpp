@@ -18,10 +18,19 @@ Fixed::Fixed(const Fixed &f)
 	number = f.number;
 }
 
+Fixed& Fixed::operator=(const Fixed &f)
+{
+	std::cout << "Copy assignment operator" << " called" << std::endl;
+	if (this != &f)
+	{
+		number = f.number;
+	}
+	return *this;
+}
+
 Fixed::Fixed(const int &in)
 {
 	number = in << frac;
-	//std::cout << number << std::endl;
 }
 
 Fixed::Fixed(const float &fn)
@@ -31,15 +40,6 @@ Fixed::Fixed(const float &fn)
 	number = (int) tmp;
 }
 
-Fixed& Fixed::operator=(const Fixed &f)
-{
-	std::cout << "Copy assignement operator" << " called" << std::endl;
-	if (this != &f)
-	{
-		number = f.number;
-	}
-	return *this;
-}
 
 int	Fixed::getRawBits(void) const
 {
@@ -58,10 +58,6 @@ int	Fixed::toInt(void) const
 
 std::ostream &operator<<(std::ostream &buf, const Fixed &f)
 {
-	// int	tmp = f.getRawBits();
-	// int	main = tmp >> FRAC;
-	// int	frac = tmp << FRAC;
-	// buf << main << '.' << frac;
 	buf << f.toFloat();
 	return (buf);
 }
@@ -131,13 +127,13 @@ bool	Fixed::operator!=(const Fixed &op2) const
 	return (this->number != op2.number);
 }
 
-Fixed&	Fixed::operator++()
+Fixed&	Fixed::operator++() // prefix
 {
 	this->number += one;
 	return *this;
 }
 
-Fixed	Fixed::operator++(int)
+Fixed	Fixed::operator++(int) // postfix
 {
 	Fixed	tmp(*this);
 	this->number += one;

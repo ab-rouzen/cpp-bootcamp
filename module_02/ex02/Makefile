@@ -4,7 +4,7 @@ INCLUDE = Fixed.hpp
 CC = c++
 BUILD_DIR = build/
 STD = -std=c++98
-FLAGS = -Wall -Wextra #-Werror
+FLAGS = -Wall -Wextra -Werror
 OBJS = $(SRCS:%.cpp=$(BUILD_DIR)%.o)
 
 all : $(NAME)

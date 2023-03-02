@@ -29,10 +29,12 @@ Fixed& Fixed::operator=(const Fixed &f)
 
 int	Fixed::getRawBits(void) const
 {
+	std::cout << "Member function getRawBits()" << " called" << std::endl;
 	return number;
 }
 
 void	Fixed::setRawBits(int const raw)
 {
+	std::cout << "Member function setRawBits()" << " called" << std::endl;
 	number = raw;
 }
