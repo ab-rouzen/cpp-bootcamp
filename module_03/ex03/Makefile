@@ -1,6 +1,6 @@
 NAME = prog
-SRCS = main.cpp ClapTrap.cpp FragTrap.cpp
-INCLUDE = ClapTrap.hpp FragTrap.hpp
+SRCS = main.cpp ClapTrap.cpp FragTrap.cpp ScavTrap.cpp DiamondTrap.cpp
+INCLUDE = ClapTrap.hpp FragTrap.hpp ScavTrap.hpp DiamondTrap.hpp
 CC = c++
 BUILD_DIR = build/
 STD = -std=c++98

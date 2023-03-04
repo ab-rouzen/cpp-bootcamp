@@ -7,11 +7,7 @@ int	main(void)
 	halo.attack("Freizer");
 	halo.takeDamage(8);
 	halo.beRepaired(4);
-	halo.takeDamage(8);
-	halo.takeDamage(8);
 	halo.guardGate();
 	ScavTrap Biji(halo);
-	Biji.attack("Freizer");
-	Biji.ClapTrap::attack("Freizer");
 	return 0;
 }

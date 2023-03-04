@@ -1,15 +1,17 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
-	FragTrap halo("Goku");
+	DiamondTrap halo("Goku");
 
 	halo.attack("Freizer");
 	halo.takeDamage(8);
 	halo.beRepaired(4);
 	halo.highFiveGuys();
-	FragTrap Biji("Biji");
+	DiamondTrap Biji("Biji");
 	Biji = halo;
 	Biji.attack("Doom");
+	Biji.ClapTrap::attack("Freizer");
+	Biji.whoAmI();
 	return 0;
 }
