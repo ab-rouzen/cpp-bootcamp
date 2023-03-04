@@ -12,5 +12,6 @@ int	main(void)
 	halo.guardGate();
 	ScavTrap Biji(halo);
 	Biji.attack("Freizer");
+	Biji.ClapTrap::attack("Freizer");
 	return 0;
 }

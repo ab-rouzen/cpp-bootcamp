@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-struct	ScavTrap : ClapTrap
+struct	ScavTrap : public ClapTrap
 {
 	public:
 		ScavTrap(const	std::string &name);
@@ -13,6 +13,7 @@ struct	ScavTrap : ClapTrap
 		ScavTrap(const ScavTrap &copy);
 		ScavTrap& operator=(const ScavTrap &copy);
 		void	guardGate(void);
+		void	attack(const std::string &target);
 };
 
 #endif // ! SCAV_TRAP_H
