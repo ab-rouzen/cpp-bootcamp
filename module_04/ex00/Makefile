@@ -1,6 +1,6 @@
 NAME = prog
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp
-INCLUDE = Animal.hpp Cat.hpp Dog.hpp
+SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp WrongAnimal.cpp
+INCLUDE = Animal.hpp Cat.hpp Dog.hpp WrongCat.hpp WrongAnimal.hpp
 CC = c++
 BUILD_DIR = build/
 STD = -std=c++98

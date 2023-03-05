@@ -12,7 +12,7 @@ class	Cat : public Animal
 		Cat(const Cat &copy);
 		Cat&	operator=(const Cat &copy);
 		~Cat(void);
-		void	makeSound(void);
+		void	makeSound(void) const;
 };
 
 #endif // ! CAT_H
