@@ -1,0 +1,24 @@
+#ifndef CHARACTER_H
+#define CHARACTER_H
+
+#include "ICharacter.hpp"
+
+class	Character : ICharacter
+{
+private:
+	std::string	name;
+	AMateria	*slot[4];
+	int			equipCount;
+
+public:
+	Character(const std::string myName);
+	~Character();
+	Character(const ICharacter &copy);
+	Character& operator=(const ICharacter &copy);
+	std::string const & getName() const;
+	void	equip(AMateria* m);
+	void	unequip(int idx);
+	void	use(int idx, ICharacter& target);
+};
+
+#endif // ! CHARACTER_H
