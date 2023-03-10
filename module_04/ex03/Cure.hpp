@@ -8,9 +8,9 @@ class	Cure : public AMateria
 {
 
 public:
-	Cure(const std::string &myName);
+	Cure();
 	~Cure();
-	void		use(ICharacter &target) const;
+	void		use(ICharacter &target);
 	AMateria*	clone(void) const;
 };
 

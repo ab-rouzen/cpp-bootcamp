@@ -8,9 +8,9 @@ class	Ice : public AMateria
 {
 
 public:
-	Ice(const std::string &myName);
+	Ice();
 	~Ice();
-	void		use(ICharacter &target) const;
+	void		use(ICharacter &target);
 	AMateria*	clone(void) const;
 };
 
