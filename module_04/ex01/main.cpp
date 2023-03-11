@@ -4,10 +4,15 @@
 
 int main(void)
 {
-	const Animal	*myCat = new Cat();
-	const Animal	*myDog = new Dog();
-
-	delete myCat;
-	delete myDog;
+	Animal*	Anim[64];
+	for (int i = 0; i < 64; i++)
+	{
+		if (i % 2)
+			Anim[i] = new Cat();
+		else
+			Anim[i] = new Dog();
+	}
+	for (int i = 0; i < 64; i++)
+		delete Anim[i];
 	return 0;
 }

@@ -3,10 +3,13 @@
 Cure::Cure() 
 	: AMateria("cure")
 {
-
+	//std::cout << "Cure constructor called" << std::endl;
 }
 
-Cure::~Cure() {}
+Cure::~Cure()
+{
+	//std::cout << "Cure destructor called" << std::endl;
+}
 
 void	Cure::use(ICharacter &target)
 {

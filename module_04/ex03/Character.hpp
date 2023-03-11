@@ -8,7 +8,7 @@ class	Character : public ICharacter
 private:
 	std::string	name;
 	AMateria	*slot[4];
-	int			equipCount;
+	int			isEmpty[4];
 
 public:
 	Character(const std::string myName);

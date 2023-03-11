@@ -11,10 +11,12 @@ Dog::Dog(const Dog &copy)
 {
 	std::cout << "Dog copy constructor has been called." << std::endl;
 	type = copy.type;
+	myBrain = new Brain();
 }
 
 Dog&	Dog::operator=(const Dog &copy)
 {
+	std::cout << "Dog copy assignment operator has been called." << std::endl;
 	if (this != &copy)
 	{
 		type = copy.type;

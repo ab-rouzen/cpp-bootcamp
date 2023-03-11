@@ -11,10 +11,12 @@ Cat::Cat(const Cat &copy)
 {
 	std::cout << "Cat copy constructor has been called." << std::endl;
 	type = copy.type;
+	myBrain = new Brain();
 }
 
 Cat&	Cat::operator=(const Cat &copy)
 {
+	std::cout << "Cat copy assignment operator has been called." << std::endl;
 	if (this != &copy)
 	{
 		type = copy.type;

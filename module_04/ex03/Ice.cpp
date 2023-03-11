@@ -3,10 +3,13 @@
 Ice::Ice() 
 	: AMateria("ice")
 {
-
+	//std::cout << "Ice constructor called" << std::endl;
 }
 
-Ice::~Ice() {}
+Ice::~Ice()
+{
+	//std::cout << "Ice destructor called" << std::endl;
+}
 
 void	Ice::use(ICharacter &target)
 {

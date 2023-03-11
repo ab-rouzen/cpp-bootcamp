@@ -19,10 +19,12 @@ int	main(void)
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	ICharacter* bob = new Character("bob");
+	me->use(1, *bob);
 	me->use(0, *bob);
+	me->unequip(1);
 	me->use(1, *bob);
 	delete bob;
 	delete me;
 	delete src;
-	return 0;	
+	return 0;
 }

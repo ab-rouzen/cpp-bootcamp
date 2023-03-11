@@ -2,24 +2,50 @@
 
 Character::Character(const std::string myName)
 {
+	//std::cout << "Character constructor called" << std::endl;
 	name = myName;
-	equipCount = 0;
+	for (int i = 0; i < 4; i++)
+		isEmpty[i] = true;
+
 }
 
-Character::~Character() {}
+Character::~Character()
+{
+	//std::cout << "Character destructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (isEmpty[i] == false)
+			delete slot[i];
+	}
+}
 
 Character::Character(const Character &copy)
 {
 	name = copy.name;
-	equipCount = copy.equipCount;
-	// TO DO: copy materia array
+	for (int i = 0; i < 4; i++)
+	{
+		isEmpty[i]= copy.isEmpty[i];
+		if (isEmpty[i] == false)
+			delete slot[i];
+		if (copy.isEmpty[i] == false)
+			slot[i] = copy.slot[i]->clone();
+	}
 }
 
 Character&	Character::operator=(const Character &copy)
 {
-	name = copy.name;
-	equipCount = copy.equipCount;
-	// TO DO: copy materia array
+	if (this != &copy)
+	{
+		name = copy.name;
+		for (int i = 0; i < 4; i++)
+		{
+			isEmpty[i]= copy.isEmpty[i];
+			if (isEmpty[i] == false)
+				slot[i]->~AMateria();
+			if (copy.isEmpty[i] == false)
+				slot[i] = copy.slot[i]->clone();
+		}
+	}
 	return (*this);
 }
 
@@ -30,26 +56,25 @@ std::string const & Character::getName() const
 
 void	Character::equip(AMateria *m)
 {
-	if (m && equipCount < 4)
+	for (int i = 0; i < 4; i++)
 	{
-		slot[equipCount] = m;
-		equipCount++;
+		if (isEmpty[i] == true)
+		{
+			slot[i] = m;
+			isEmpty[i] = false;
+			break;
+		}
 	}
 }
 
 void	Character::unequip(int idx)
 {
-	if (idx < equipCount && idx >= 0)
-	{
-		slot[idx] = nullptr;
-		equipCount--;
-	}
-	// needs more tests
+	if (idx >= 0 && idx < 4 && isEmpty[idx] == false)
+		isEmpty[idx] = true;
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
-	//std::cout << "idx : " << idx << " and count : " << equipCount << std::endl;
-	if (idx >= 0 && idx < equipCount)
+	if (idx >= 0 && idx < 4 && isEmpty[idx] == false)
 		slot[idx]->use(target);
 }
