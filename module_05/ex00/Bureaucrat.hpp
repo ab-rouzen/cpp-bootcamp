@@ -21,4 +21,28 @@ class	Bureaucrat
 		int					grade;
 };
 
+class GradeTooHigh : public std::exception
+{
+	public:
+		GradeTooHigh(std::string const &exceptionMsg) throw();
+		~GradeTooHigh() throw();
+		const char*	what() const throw();
+
+	private:
+		std::string const message;
+};
+
+class GradeTooLow : public std::exception
+{
+	public:
+		GradeTooLow(std::string const &exceptionMsg) throw();
+		~GradeTooLow() throw();
+		const char*	what() const throw();
+
+	private:
+		std::string const message;
+};
+
+std::ostream&	operator<<(std::ostream &stream, Bureaucrat const &b);
+
 #endif // ! BUREAUCRAT_H

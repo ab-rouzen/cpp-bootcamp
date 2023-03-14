@@ -20,7 +20,7 @@ Bureaucrat&	Bureaucrat::operator=(Bureaucrat const &copy)
 	return (*this);
 }
 
-Bureaucrat::~Bureaucrat()	{}
+Bureaucrat::~Bureaucrat() {}
 
 int	Bureaucrat::getGrade() const
 {
@@ -36,12 +36,44 @@ void	Bureaucrat::incrementGrade()
 {
 	if (grade > 1 && grade <= 150)
 		--grade;
-	//exception here
+	else
+		throw GradeTooHigh("Grade too high");
 }
 
 void	Bureaucrat::decrementGrade()
 {
 	if (grade >= 1  && grade < 150)
 		++grade;
-	// throw execption here
+	else
+		throw(GradeTooLow("Grade too low"));
+}
+
+GradeTooHigh::GradeTooHigh(std::string const &exceptionMsg) throw()
+	: message(exceptionMsg)
+{
+}
+
+GradeTooHigh::~GradeTooHigh()	throw() {}
+
+const char*	GradeTooHigh::what() const throw()
+{
+	return (message.c_str());
+}
+
+GradeTooLow::GradeTooLow(std::string const &exceptionMsg) throw()
+	: message(exceptionMsg)
+{
+}
+
+GradeTooLow::~GradeTooLow()	throw() {}
+
+const char*	GradeTooLow::what() const throw()
+{
+	return (message.c_str());
+}
+
+std::ostream&	operator<<(std::ostream &stream, Bureaucrat const &b)
+{
+	stream << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
+	return (stream);
 }
