@@ -12,19 +12,19 @@ int	main(void)
 		//Tom.incrementGrade();
 		Tom.decrementGrade();
 	}
-	catch (GradeTooHigh &e)
+	catch (GradeTooHighException &e)
 	{
 		std::cout << "caught an exception" << std::endl;
 		std::cout << "it says: " << e.what() << std::endl;
 	}
-	catch (GradeTooLow &e)
+	catch (GradeTooLowException &e)
 	{
 		std::cout << "caught an exception" << std::endl;
 		std::cout << "it says: " << e.what() << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "a standard exception has been caught" << std::endl;
+ 		std::cout << "a standard exception has been caught" << std::endl;
 		std::cout << "it says: " << e.what() << std::endl;
 	}
 	std::cout << Tom << std::endl;

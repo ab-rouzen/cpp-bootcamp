@@ -37,7 +37,7 @@ void	Bureaucrat::incrementGrade()
 	if (grade > 1 && grade <= 150)
 		--grade;
 	else
-		throw GradeTooHigh("Grade too high");
+		throw GradeTooHighException("Grade too high");
 }
 
 void	Bureaucrat::decrementGrade()
@@ -45,29 +45,29 @@ void	Bureaucrat::decrementGrade()
 	if (grade >= 1  && grade < 150)
 		++grade;
 	else
-		throw(GradeTooLow("Grade too low"));
+		throw(GradeTooLowException("Grade too low"));
 }
 
-GradeTooHigh::GradeTooHigh(std::string const &exceptionMsg) throw()
+GradeTooHighException::GradeTooHighException(std::string const &exceptionMsg) throw()
 	: message(exceptionMsg)
 {
 }
 
-GradeTooHigh::~GradeTooHigh()	throw() {}
+GradeTooHighException::~GradeTooHighException()	throw() {}
 
-const char*	GradeTooHigh::what() const throw()
+const char*	GradeTooHighException::what() const throw()
 {
 	return (message.c_str());
 }
 
-GradeTooLow::GradeTooLow(std::string const &exceptionMsg) throw()
+GradeTooLowException::GradeTooLowException(std::string const &exceptionMsg) throw()
 	: message(exceptionMsg)
 {
 }
 
-GradeTooLow::~GradeTooLow()	throw() {}
+GradeTooLowException::~GradeTooLowException()	throw() {}
 
-const char*	GradeTooLow::what() const throw()
+const char*	GradeTooLowException::what() const throw()
 {
 	return (message.c_str());
 }
