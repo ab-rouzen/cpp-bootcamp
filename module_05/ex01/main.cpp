@@ -5,18 +5,17 @@
 
 int	main(void)
 {
-	Bureaucrat	Tom("Tom", 3);
+	Bureaucrat	Tom("Tom", 30);
 	Form		b4("B4", 20, 11);
 
 
 	std::cout << Tom << std::endl;
 	std::cout << b4 << std::endl;
-	b4.signForm();
-	b4.beSigned(Tom);
-	b4.signForm();
+	Tom.signForm(b4);
 	try
 	{
 		//Tom.incrementGrade();
+		b4.beSigned(Tom);
 		Tom.decrementGrade();
 	}
 	catch (GradeTooHighException &e)
@@ -34,6 +33,5 @@ int	main(void)
  		std::cout << "a standard exception has been caught" << std::endl;
 		std::cout << "it says: " << e.what() << std::endl;
 	}
-	std::cout << Tom << std::endl;
 	return 0;
 }

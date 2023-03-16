@@ -14,8 +14,6 @@ Form::Form(const Form &copy)
 	: name(copy.name), signGrade(copy.signGrade), executeGrade(copy.executeGrade)
 {
 	isSigned = copy.isSigned;
-	whoTriedSign = copy.whoTriedSign;
-	notSignedReason = copy.notSignedReason;
 }
 
 Form&	Form::operator=(const Form &copy)
@@ -30,10 +28,7 @@ Form::~Form()	{}
 void	Form::beSigned(const Bureaucrat &b)
 {
 	if (b.getGrade() <= signGrade)
-	{
 		isSigned  = true;
-		whoTriedSign = b.getName();
-	}
 	else
 		throw(GradeTooLowException("Grade too low"));
 }
@@ -43,22 +38,26 @@ std::string Form::getName(void) const
 	return (name);
 }
 
+int	Form::getSignGrade(void) const
+{
+	return (signGrade);
+}
+
+int	Form::getExecuteGrade(void) const
+{
+	return (executeGrade);
+}
+
 bool	Form::isFormSigned(void) const
 {
 	return (isSigned);
 }
 
-void	Form::signForm(void) const
-{
-	if (isSigned == true)
-		std::cout << whoTriedSign << " signed " << name << "." << std::endl;
-	else
-		std::cout << whoTriedSign << " couldn't sign form " << name <<
-		" because " << notSignedReason << "." << std::endl;
-}
-
 std::ostream&	operator<<(std::ostream &stream, const Form &f)
 {
-	stream << f.getName() << " | signed : "<< f.isFormSigned();
+	stream << "Name          : " << f.getName() << std::endl; 
+	stream << "Sign grade    : " << f.getSignGrade() << std::endl;
+	stream << "Execute grade : " << f.getExecuteGrade() << std::endl;
+	stream << "Signed status : " << f.isFormSigned() << std::endl;
 	return (stream);
 }
