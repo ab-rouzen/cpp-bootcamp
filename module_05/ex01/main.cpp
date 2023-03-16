@@ -10,6 +10,7 @@ int	main(void)
 
 
 	std::cout << Tom << std::endl;
+	std::cout << b4 << std::endl;
 	b4.signForm();
 	b4.beSigned(Tom);
 	b4.signForm();

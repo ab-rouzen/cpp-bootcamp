@@ -38,6 +38,16 @@ void	Form::beSigned(const Bureaucrat &b)
 		throw(GradeTooLowException("Grade too low"));
 }
 
+std::string Form::getName(void) const
+{
+	return (name);
+}
+
+bool	Form::isFormSigned(void) const
+{
+	return (isSigned);
+}
+
 void	Form::signForm(void) const
 {
 	if (isSigned == true)
@@ -45,4 +55,10 @@ void	Form::signForm(void) const
 	else
 		std::cout << whoTriedSign << " couldn't sign form " << name <<
 		" because " << notSignedReason << "." << std::endl;
+}
+
+std::ostream&	operator<<(std::ostream &stream, const Form &f)
+{
+	stream << f.getName() << " | signed : "<< f.isFormSigned();
+	return (stream);
 }

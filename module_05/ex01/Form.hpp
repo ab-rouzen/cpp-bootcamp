@@ -11,9 +11,11 @@ class	Form{
 		Form(const Form &copy);
 		Form&	operator=(const Form &copy);
 		~Form();
-		void	beSigned(const Bureaucrat &b);
-		void	signForm(void) const;
-	
+		void		beSigned(const Bureaucrat &b);
+		void		signForm(void) const;
+		std::string	getName(void) const;
+		bool		isFormSigned(void) const;
+
 	private:
 		const std::string	name;
 		const int			signGrade;
@@ -22,5 +24,7 @@ class	Form{
 		std::string			whoTriedSign;
 		std::string			notSignedReason;
 };
+
+std::ostream&	operator<<(std::ostream &stream, const Form &f);
 
 #endif // ! FORM_H
