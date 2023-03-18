@@ -18,8 +18,9 @@ int	main(void)
 	try
 	{
 		//Tom.incrementGrade();
-		//Tom.signForm(b4);
+		Tom.signForm(b4);
 		b4.execute(Tom);
+		Tom.executeForm(b4);
 		//b4.beSigned(Tom);
 		Tom.decrementGrade();
 	}
