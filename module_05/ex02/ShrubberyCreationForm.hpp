@@ -13,9 +13,9 @@ class	ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(const ShrubberyCreationForm &copy);
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm &copy);
 		~ShrubberyCreationForm();
-		void	printExecuteMessage(const std::string &target) const;
 	
 	private:
+		void	printExecuteMessage(const std::string &target) const;
 };
 
 #endif	// ! SHRUBBERY_CREATION_FORM_H

@@ -1,6 +1,10 @@
 NAME = prog
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
-INCLUDE = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp
+SRCS = main.cpp Bureaucrat.cpp \
+		AForm.cpp ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp
+INCLUDE = Bureaucrat.hpp AForm.hpp \
+		ShrubberyCreationForm.hpp \
+		RobotomyRequestForm.hpp
 CC = c++
 BUILD_DIR = build/
 STD = -std=c++98

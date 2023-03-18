@@ -2,20 +2,22 @@
 #include "Bureaucrat.hpp"
 #include <exception>
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int	main(void)
 {
-	Bureaucrat				Tom("Tom", 30);
-	ShrubberyCreationForm	b4("B4");
+	Bureaucrat				Tom("Tom", 15);
+	//ShrubberyCreationForm	b4("B4");
+	RobotomyRequestForm		b4("B4");
 
 
 	std::cout << Tom << std::endl;
 	std::cout << b4 << std::endl;
-	Tom.signForm(b4);
-	b4.execute(Tom);
 	try
 	{
 		//Tom.incrementGrade();
+		//Tom.signForm(b4);
+		b4.execute(Tom);
 		b4.beSigned(Tom);
 		Tom.decrementGrade();
 	}
