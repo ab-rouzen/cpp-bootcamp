@@ -27,6 +27,17 @@ class	AForm{
 		bool				isSigned;
 };
 
+class	FormUnsignedException : public std::exception
+{
+	public:
+		FormUnsignedException(const std::string &exceptionMessage) throw();
+		~FormUnsignedException() throw();
+		const char*	what() const throw();
+	
+	private:
+		std::string const message;
+};
+
 std::ostream&	operator<<(std::ostream &stream, const AForm &f);
 
 #endif // ! FORM_H

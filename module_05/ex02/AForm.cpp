@@ -64,9 +64,23 @@ std::ostream&	operator<<(std::ostream &stream, const AForm &f)
 
 void	AForm::execute(const Bureaucrat &executor) const
 {
-	if (executor.getGrade() <= executeGrade)
+	if (isSigned == false)
+		throw(FormUnsignedException("Form is not signed."));
+	else if (executor.getGrade() <+ executeGrade)
 		;
 	else
 		throw (GradeTooLowException("Grade too low"));
 	printExecuteMessage(name);
+}
+
+FormUnsignedException::FormUnsignedException(const std::string &exceptionMessage) throw()
+	: message(exceptionMessage)
+{
+}
+
+FormUnsignedException::~FormUnsignedException() throw() {}
+
+const char*	FormUnsignedException::what() const throw()
+{
+	return (message.c_str());
 }

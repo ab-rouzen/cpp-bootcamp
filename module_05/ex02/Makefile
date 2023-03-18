@@ -1,10 +1,14 @@
 NAME = prog
 SRCS = main.cpp Bureaucrat.cpp \
 		AForm.cpp ShrubberyCreationForm.cpp \
-		RobotomyRequestForm.cpp
+		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp
+
 INCLUDE = Bureaucrat.hpp AForm.hpp \
 		ShrubberyCreationForm.hpp \
-		RobotomyRequestForm.hpp
+		RobotomyRequestForm.hpp \
+		PresidentialPardonForm.hpp
+
 CC = c++
 BUILD_DIR = build/
 STD = -std=c++98

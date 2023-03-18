@@ -3,12 +3,14 @@
 #include <exception>
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main(void)
 {
 	Bureaucrat				Tom("Tom", 15);
 	//ShrubberyCreationForm	b4("B4");
-	RobotomyRequestForm		b4("B4");
+	//RobotomyRequestForm		b4("B4");
+	PresidentialPardonForm		b4("B4");
 
 
 	std::cout << Tom << std::endl;
@@ -18,7 +20,7 @@ int	main(void)
 		//Tom.incrementGrade();
 		//Tom.signForm(b4);
 		b4.execute(Tom);
-		b4.beSigned(Tom);
+		//b4.beSigned(Tom);
 		Tom.decrementGrade();
 	}
 	catch (GradeTooHighException &e)
