@@ -3,10 +3,15 @@
 Bureaucrat::Bureaucrat(std::string const &bureaucratName, int bureaucratGrade)
 	: name(bureaucratName)
 {
-	grade = bureaucratGrade; 
+	if (bureaucratGrade < 1)
+		throw (GradeTooHighException("Grade too high"));
+	if (bureaucratGrade > 150)
+		throw (GradeTooLowException("Grade too low"));
+	grade = bureaucratGrade;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &copy)
+	: name(copy.name)
 {
 	grade = copy.grade;
 }
@@ -48,26 +53,26 @@ void	Bureaucrat::decrementGrade()
 		throw(GradeTooLowException("Grade too low"));
 }
 
-GradeTooHighException::GradeTooHighException(std::string const &exceptionMsg) throw()
+Bureaucrat::GradeTooHighException::GradeTooHighException(std::string const &exceptionMsg) throw()
 	: message(exceptionMsg)
 {
 }
 
-GradeTooHighException::~GradeTooHighException()	throw() {}
+Bureaucrat::GradeTooHighException::~GradeTooHighException()	throw() {}
 
-const char*	GradeTooHighException::what() const throw()
+const char*	Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return (message.c_str());
 }
 
-GradeTooLowException::GradeTooLowException(std::string const &exceptionMsg) throw()
+Bureaucrat::GradeTooLowException::GradeTooLowException(std::string const &exceptionMsg) throw()
 	: message(exceptionMsg)
 {
 }
 
-GradeTooLowException::~GradeTooLowException()	throw() {}
+Bureaucrat::GradeTooLowException::~GradeTooLowException()	throw() {}
 
-const char*	GradeTooLowException::what() const throw()
+const char*	Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return (message.c_str());
 }

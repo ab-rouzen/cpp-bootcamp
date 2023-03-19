@@ -4,9 +4,9 @@ AForm::AForm(std::string const &formName, int formSignGrade, int formExecGrade)
 	: name(formName), signGrade(formSignGrade), executeGrade(formExecGrade)
 {
 	if (formSignGrade > 150 || formExecGrade > 150)
-		throw (GradeTooHighException("Grade too high"));
-	else if (formSignGrade < 1 || formExecGrade < 1)
 		throw(GradeTooLowException("Grade too low"));
+	else if (formSignGrade < 1 || formExecGrade < 1)
+		throw (GradeTooHighException("Grade too high"));
 	isSigned = false;
 }
 
@@ -66,21 +66,45 @@ void	AForm::execute(const Bureaucrat &executor) const
 {
 	if (isSigned == false)
 		throw(FormUnsignedException("Form is not signed."));
-	else if (executor.getGrade() <+ executeGrade)
+	else if (executor.getGrade() <= executeGrade)
 		;
 	else
 		throw (GradeTooLowException("Grade too low"));
 	printExecuteMessage(name);
 }
 
-FormUnsignedException::FormUnsignedException(const std::string &exceptionMessage) throw()
+AForm::GradeTooHighException::GradeTooHighException(std::string const &exceptionMsg) throw()
+	: message(exceptionMsg)
+{
+}
+
+AForm::GradeTooHighException::~GradeTooHighException()	throw() {}
+
+const char*	AForm::GradeTooHighException::what() const throw()
+{
+	return (message.c_str());
+}
+
+AForm::GradeTooLowException::GradeTooLowException(std::string const &exceptionMsg) throw()
+	: message(exceptionMsg)
+{
+}
+
+AForm::GradeTooLowException::~GradeTooLowException()	throw() {}
+
+const char*	AForm::GradeTooLowException::what() const throw()
+{
+	return (message.c_str());
+}
+
+AForm::FormUnsignedException::FormUnsignedException(const std::string &exceptionMessage) throw()
 	: message(exceptionMessage)
 {
 }
 
-FormUnsignedException::~FormUnsignedException() throw() {}
+AForm::FormUnsignedException::~FormUnsignedException() throw() {}
 
-const char*	FormUnsignedException::what() const throw()
+const char*	AForm::FormUnsignedException::what() const throw()
 {
 	return (message.c_str());
 }

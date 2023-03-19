@@ -21,6 +21,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void	RobotomyRequestForm::printExecuteMessage(const std::string &target) const
 {
+	std::cout << "* DRILLING NOISE *" << std::endl;
 	srand(time(NULL));
 	if (rand() % 2 == 1)
 		std::cout << target << " has been robotomized successfully." << std::endl;

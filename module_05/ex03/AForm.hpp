@@ -8,6 +8,9 @@ class AForm;
 
 class	AForm{
 	public:
+		class	FormUnsignedException;
+		class	GradeTooHighException;
+		class	GradeTooLowException;
 		AForm(std::string const &formName,int formSignGrade, int formExecGrade);
 		AForm(const AForm &copy);
 		AForm&	operator=(const AForm &copy);
@@ -27,13 +30,35 @@ class	AForm{
 		bool				isSigned;
 };
 
-class	FormUnsignedException : public std::exception
+class	AForm::FormUnsignedException : public std::exception
 {
 	public:
 		FormUnsignedException(const std::string &exceptionMessage) throw();
 		~FormUnsignedException() throw();
 		const char*	what() const throw();
 	
+	private:
+		std::string const message;
+};
+
+class AForm::GradeTooHighException : public std::exception
+{
+	public:
+		GradeTooHighException(std::string const &exceptionMsg) throw();
+		~GradeTooHighException() throw();
+		const char*	what() const throw();
+
+	private:
+		std::string const message;
+};
+
+class AForm::GradeTooLowException : public std::exception
+{
+	public:
+		GradeTooLowException(std::string const &exceptionMsg) throw();
+		~GradeTooLowException() throw();
+		const char*	what() const throw();
+
 	private:
 		std::string const message;
 };

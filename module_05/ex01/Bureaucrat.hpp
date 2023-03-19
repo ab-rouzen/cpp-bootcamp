@@ -9,6 +9,8 @@ class Bureaucrat;
 class	Bureaucrat
 {
 	public:
+	 	class	GradeTooHighException;
+		class	GradeTooLowException;
 		Bureaucrat(std::string const &bureaucratName, int bureaucratGrade);
 		Bureaucrat(Bureaucrat const &copy);
 		~Bureaucrat();
@@ -25,7 +27,7 @@ class	Bureaucrat
 		int					grade;
 };
 
-class GradeTooHighException : public std::exception
+class Bureaucrat::GradeTooHighException : public std::exception
 {
 	public:
 		GradeTooHighException(std::string const &exceptionMsg) throw();
@@ -36,7 +38,7 @@ class GradeTooHighException : public std::exception
 		std::string const message;
 };
 
-class GradeTooLowException : public std::exception
+class Bureaucrat::GradeTooLowException : public std::exception
 {
 	public:
 		GradeTooLowException(std::string const &exceptionMsg) throw();
@@ -48,11 +50,5 @@ class GradeTooLowException : public std::exception
 };
 
 std::ostream&	operator<<(std::ostream &stream, Bureaucrat const &b);
-
-// namespace Bureau {
-// 	class	Bureaucrat;
-// 	class	GradeTooHighException;
-// 	class	GradeTooLowException;
-// }
 
 #endif // ! BUREAUCRAT_H

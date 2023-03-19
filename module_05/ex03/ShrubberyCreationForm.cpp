@@ -23,9 +23,26 @@ void	ShrubberyCreationForm::printExecuteMessage(const std::string &target) const
 {
 	std::ofstream	myFile(target + "_shrubbery");
 
-	std::cout << "executing..." << std::endl;
 	if (myFile.is_open())
 	{
-		myFile << "000" << std::endl;
+			myFile <<
+			"         v" << std::endl <<
+			"        >X<" << std::endl <<
+			"         A" << std::endl <<
+			"        d$b" << std::endl <<
+			"      .d\\$$b." << std::endl <<
+			"    .d$i$$\\$$b." << std::endl <<
+			"       d$$@b" << std::endl <<
+			"      d\\$$$ib" << std::endl <<
+			"    .d$$$\\$$$b" << std::endl <<
+			"  .d$$@$$$$\\$$ib." << std::endl <<
+			"      d$$i$$b" << std::endl <<
+			"     d\\$$$$@$b" << std::endl <<
+			"  .d$@$$\\$$$$$@b." << std::endl <<
+			".d$$$$i$$$\\$$$$$$b." << std::endl <<
+			"        ###" << std::endl <<
+			"        ###" << std::endl <<
+			"        ###" << std::endl <<
+		std::endl;
 	}
 }

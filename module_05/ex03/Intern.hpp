@@ -19,7 +19,7 @@ class Intern
 
 	private:
 		std::string validForm[3];
-		AForm*		(Intern::*createForm[4]) (std::string const &formTarget) const;
+		AForm*		(Intern::*createForm[3]) (std::string const &formTarget) const;
 		AForm*		createShrubbery(std::string const &formTarget) const;
 		AForm*		createRobotomy(std::string const &formTarget) const;
 		AForm*		createPresidential(std::string const &formTarget) const;

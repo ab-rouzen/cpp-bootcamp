@@ -5,19 +5,19 @@
 int	main(void)
 {
 	Bureaucrat	Tom("Tom", 150);
-
+	Bureaucrat	Mohamed("Mohamed", 0);
 	std::cout << Tom << std::endl;
 	try
 	{
 		//Tom.incrementGrade();
 		Tom.decrementGrade();
 	}
-	catch (GradeTooHighException &e)
+	catch (Bureaucrat::GradeTooHighException &e)
 	{
 		std::cout << "caught an exception" << std::endl;
 		std::cout << "it says: " << e.what() << std::endl;
 	}
-	catch (GradeTooLowException &e)
+	catch (Bureaucrat::GradeTooLowException &e)
 	{
 		std::cout << "caught an exception" << std::endl;
 		std::cout << "it says: " << e.what() << std::endl;
@@ -27,6 +27,5 @@ int	main(void)
  		std::cout << "a standard exception has been caught" << std::endl;
 		std::cout << "it says: " << e.what() << std::endl;
 	}
-	std::cout << Tom << std::endl;
 	return 0;
 }

@@ -4,9 +4,9 @@ Form::Form(std::string const &formName, int formSignGrade, int formExecGrade)
 	: name(formName), signGrade(formSignGrade), executeGrade(formExecGrade)
 {
 	if (formSignGrade > 150 || formExecGrade > 150)
-		throw (GradeTooHighException("Grade too high"));
-	else if (formSignGrade < 1 || formExecGrade < 1)
 		throw(GradeTooLowException("Grade too low"));
+	else if (formSignGrade < 1 || formExecGrade < 1)
+		throw (GradeTooHighException("Grade too high"));
 	isSigned = false;
 }
 
@@ -60,4 +60,28 @@ std::ostream&	operator<<(std::ostream &stream, const Form &f)
 	stream << "Execute grade : " << f.getExecuteGrade() << std::endl;
 	stream << "Signed status : " << f.isFormSigned() << std::endl;
 	return (stream);
+}
+
+Form::GradeTooHighException::GradeTooHighException(std::string const &exceptionMsg) throw()
+	: message(exceptionMsg)
+{
+}
+
+Form::GradeTooHighException::~GradeTooHighException()	throw() {}
+
+const char*	Form::GradeTooHighException::what() const throw()
+{
+	return (message.c_str());
+}
+
+Form::GradeTooLowException::GradeTooLowException(std::string const &exceptionMsg) throw()
+	: message(exceptionMsg)
+{
+}
+
+Form::GradeTooLowException::~GradeTooLowException()	throw() {}
+
+const char*	Form::GradeTooLowException::what() const throw()
+{
+	return (message.c_str());
 }
