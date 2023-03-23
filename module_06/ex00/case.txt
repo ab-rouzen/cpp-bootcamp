@@ -1,0 +1,10 @@
+cases:
+
+- Integer
+	+ has only numbers, minus or plus signs
+- Float
+	+ Integer + has an 'f' at the end
+- Double
+	+ Integer + has a dot '.' but no 'f'
+- Char
+	+ is an ascii character other than f
