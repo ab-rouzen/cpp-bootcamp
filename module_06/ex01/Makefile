@@ -1,6 +1,6 @@
-NAME = convert
-SRCS = main.cpp ScalarConverter.cpp
-INCLUDE = ScalarConverter.hpp
+NAME = serializer
+SRCS = main.cpp Serializer.cpp
+INCLUDE = Serializer.hpp
 CC = c++
 BUILD_DIR = build/
 STD = -std=c++98
