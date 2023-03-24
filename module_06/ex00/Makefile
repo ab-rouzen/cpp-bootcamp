@@ -1,4 +1,4 @@
-NAME = prog
+NAME = convert
 SRCS = main.cpp ScalarConverter.cpp
 INCLUDE = ScalarConverter.hpp
 CC = c++

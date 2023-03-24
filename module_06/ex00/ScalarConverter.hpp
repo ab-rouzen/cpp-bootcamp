@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <iomanip>
+#include <limits>
 
 enum literalType{
 	LUNDEFINED,
@@ -11,11 +13,11 @@ enum literalType{
 	LINTEGER,
 	LFLOAT,
 	LDOUBLE,
-	LMINFF,
+	LNINFF,
 	LPINFF,
 	LNANF,
 	LPINF,
-	LMINF,
+	LNINF,
 	LNAN
 };
 
@@ -31,6 +33,9 @@ class	ScalarConverter	{
 		static	void		convertFloat(char *str);
 		static	void		convertChar(char *str);
 		static	void		convertType(char *str);
+		static	void		convertScientific(char *str);
+		static	void		printChar(double val);
+		static	void		printInt(double val);
 };
 
 #endif // ! SCALAR_CONVERTER_H
