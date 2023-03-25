@@ -1,15 +1,12 @@
 #ifndef	SERIALIZER_H
 #define	SERIALIZER_H
-#include <MacTypes.h>
+#include <stdint.h>
 
 struct Data
 {
 	int		n;
 	char	c;
 };
-
-//typedef unsigned int * uintptr_t;
-
 
 class	Serializer{
 	public:
