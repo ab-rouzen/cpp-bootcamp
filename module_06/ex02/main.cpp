@@ -10,8 +10,9 @@ Base*	generate(void);
 
 int	main(void)
 {
+	srand(time(NULL));
 	Base	&bref = *generate();
 	identify(bref);
-	// Base	*ptr = generate();
-	// identify(ptr);
+	Base	*ptr = generate();
+	identify(ptr);
 }

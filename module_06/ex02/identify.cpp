@@ -8,7 +8,6 @@
 
 Base*	generate(void)
 {
-	srand(time(NULL));
 	int var = rand() % 3;
 	switch (var)
 	{
@@ -33,11 +32,11 @@ Base*	generate(void)
 void	identify(Base*	type)
 {
 	if (dynamic_cast<A*> (type))
-		std::cout << "A" << std::endl;
+		std::cout << "This pointer is of class 'A'" << std::endl;
 	else if (dynamic_cast<B*> (type))
-		std::cout << "B" << std::endl;
+		std::cout << "This pointer is of class 'B'" << std::endl;
 	else if (dynamic_cast<C*> (type))
-		std::cout << "C" << std::endl;
+		std::cout << "This pointer is of class 'C'" << std::endl;
 }
 
 void	identify(Base&	type)
@@ -45,19 +44,19 @@ void	identify(Base&	type)
 	try
 	{
 		(void) dynamic_cast<A&> (type);
-		std::cout << "A" << std::endl;
+		std::cout << "This reference is of class 'A'" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		try
 		{
 			(void) dynamic_cast<B&> (type);
-			std::cout << "B" << std::endl;
+			std::cout << "This reference is of class 'B'" << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			(void) dynamic_cast<C&> (type);
-			std::cout << "C" << std::endl;				
+			std::cout << "This reference is of class 'C'" << std::endl;				
 		}
 		
 	}
