@@ -23,10 +23,13 @@ enum literalType{
 
 class	ScalarConverter	{
 	public:
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter &copy);
+		ScalarConverter&	operator=(const ScalarConverter &copy);
+		~ScalarConverter();
 		static void	convert(char *str);
 
 	private:
-		ScalarConverter();
 		static literalType	getType(std::string literal);
 		static	void		convertInt(char *str);
 		static	void		convertDouble(char *str);

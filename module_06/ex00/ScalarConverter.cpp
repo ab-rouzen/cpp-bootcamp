@@ -2,6 +2,19 @@
 
 ScalarConverter::ScalarConverter()	{}
 
+ScalarConverter::ScalarConverter(const ScalarConverter &copy)
+{
+	(void) copy;
+}
+
+ScalarConverter&	ScalarConverter::operator=(const ScalarConverter &copy)
+{
+	(void) copy;
+	return (*this);
+}
+
+ScalarConverter::~ScalarConverter()	{}
+
 void	ScalarConverter::convert(char *str)
 {
 	literalType	type = getType(str);
@@ -37,19 +50,19 @@ literalType	ScalarConverter::getType(std::string literal)
 {
 	literalType	type = LUNDEFINED;
 
-	if (literal.size() == 1)
+	if (literal.length() == 1)
 		if (literal[0] < '0' || literal[0] > '9')
 			return (LCHAR);
 	bool	dotFound = false;
-	for (unsigned int i = 0; i < literal.size(); i++)
+	for (unsigned int i = 0; i < literal.length(); i++)
 	{
 		if (i == 0 && (literal[0] == '-' || literal[0] == '+'))
 			;
 		else if ((literal[i] >= '0' && literal[i] <= '9'))
 			type = LINTEGER;
-		else if (literal[i] == '.' && i != 0 && i < literal.size() - 1 && dotFound == false)
+		else if (literal[i] == '.' && i != 0 && i < literal.length() - 1 && dotFound == false)
 			dotFound = true;
-		else if (literal[i] == 'f' && i == literal.size() - 1)
+		else if (literal[i] == 'f' && i == literal.length() - 1)
 			type = LFLOAT;
 		else
 		{
