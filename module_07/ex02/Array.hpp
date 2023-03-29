@@ -1,7 +1,7 @@
 #ifndef	ARRAY_HPP
 #define ARRAY_HPP
-#include <exception>
 #include <stdexcept>
+#include <iostream>
 
 template<class T>
 class Array
@@ -9,11 +9,12 @@ class Array
 private:
 	T				*ar;
 	unsigned int	arraySize;
+
 public:
 	Array()
 	{
-		ar = 0;
 		arraySize = 0;
+		ar = new T[0]();
 	};
 
 	Array(unsigned int n)
@@ -24,10 +25,9 @@ public:
 
 	Array(const Array<T>& copy)
 	{
-		arraySize = copy.arraySize;
-		ar = new T[arraySize];
-		for (int i = 0; i < arraySize; i++)
-			ar[i] = copy.ar[i];
+		this->ar = 0;
+		this->size = 0;
+		*this = copy;
 	};
 
 	Array<T>&	operator=(const Array<T>& copy)
@@ -35,8 +35,9 @@ public:
 		if (this != &copy)
 		{
 			arraySize = copy.arraySize;
+			delete [] ar;
 			ar = new T[arraySize];
-			for (int i = 0; i < arraySize; i++)
+			for (unsigned int i = 0; i < arraySize; i++)
 				ar[i] = copy.ar[i];
 		}
 		return (*this);
@@ -45,7 +46,14 @@ public:
 	T&	operator[](unsigned int index)
 	{
 		if (index > arraySize - 1 || arraySize == 0)
-			throw std::out_of_range("std");
+			throw std::out_of_range("out of range");
+		return(ar[index]);
+	};
+
+	const T&	operator[](unsigned int index) const
+	{
+		if (index > arraySize - 1 || arraySize == 0)
+			throw std::out_of_range("out of range");
 		return(ar[index]);
 	};
 
