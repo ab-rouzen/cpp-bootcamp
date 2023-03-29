@@ -2,7 +2,7 @@
 #define ITER_HPP
 
 template<class T>
-void	iter(T *p, int lenght, void (*func) (T& elem))
+void	iter(T *p, int lenght, void (*func) (const T& elem))
 {
 	if ( p == 0 || func == 0)
 		return;
