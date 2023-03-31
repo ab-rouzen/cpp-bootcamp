@@ -26,7 +26,7 @@ public:
 	Array(const Array<T>& copy)
 	{
 		this->ar = 0;
-		this->size = 0;
+		this->arraySize = 0;
 		*this = copy;
 	};
 
