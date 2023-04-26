@@ -37,6 +37,14 @@ void	Span::addNumber(int number)
 	std::__throw_runtime_error("Max inserted elements surpassed.");
 }
 
+void	Span::addNumber(std::vector<int>::const_iterator first, std::vector<int>::const_iterator last)
+{
+	for (; first != last; first++)
+	{
+		addNumber(*first);
+	}
+}
+
 int	Span::longestSpan(void) const
 {
 	std::vector<int>::const_iterator min = std::min_element(holder.begin(), holder.end());
