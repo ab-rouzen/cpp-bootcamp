@@ -3,7 +3,7 @@
 
 int	main()
 {
-	Span				foo(5);
+	Span				foo(10020);
 	std::vector<int>	bar;
 
 	foo.addNumber(6);
@@ -11,6 +11,10 @@ int	main()
 	foo.addNumber(17);
 	foo.addNumber(9);
 	foo.addNumber(11);
+	for (int i = 0; i <= 10000; i++)
+	{
+		foo.addNumber(i);
+	}
 	std::cout << foo.longestSpan() << std::endl;
 	std::cout << foo.shortestSpan() << std::endl;
 	

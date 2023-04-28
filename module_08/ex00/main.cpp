@@ -10,4 +10,6 @@ int main()
 	vec.push_back(3);
 	vec.push_back(4);
 	std::cout << easyfind(vec, 4) << std::endl;
+	// aborts here, because 7 is not found
+	std::cout << easyfind(vec, 7) << std::endl;
 }

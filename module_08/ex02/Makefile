@@ -1,6 +1,6 @@
-NAME = find
+NAME = stackful
 SRCS = main.cpp
-INCLUDE = easyfind.hpp
+INCLUDE = MutantStack.hpp
 CC = c++
 BUILD_DIR = build/
 STD = -std=c++98
