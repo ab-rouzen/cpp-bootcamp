@@ -11,7 +11,7 @@
 typedef std::string			string;
 typedef	std::stringstream	sstream;
 
-// input example: 1 3 + 4 * 7 - 3
+// input example: 8 8 + 9 9 * -
 class	RPN
 {
 	public:
@@ -23,10 +23,9 @@ class	RPN
 		int		getResult();
 
 	private:
-		std::vector<string>&		reverseOps(sstream& iss);
-		std::stack<string>	s;
-		int					res;
-		bool				isChanged;
+		bool				isValidOp(char c);
+		int					calc(char op, int arg1, int arg2);
+		std::stack<int>		s;
 };
 
 #endif // ! RPN_HPP

@@ -2,56 +2,52 @@
 
 RPN::RPN(const string& exp)
 {
-	sstream				isExp(exp);
-	string				op;
-	std::vector<string>	vecOp;
-	vecOp = reverseOps(isExp);
-	std::vector<string>::iterator	it = vecOp.begin();
-	std::vector<string>::iterator	ite = vecOp.end();
-	while(it != ite)
+	sstream	isExp(exp);
+	char	token;
+	while (isExp >> token)
 	{
-		s.push(*it);
-		it++;
+		if (std::isdigit(token))
+			s.push(token - 48);
+		else if (isValidOp(token))
+		{
+			if (s.empty() || s.size() == 1)
+				std::__throw_logic_error("Logic error");
+			int	operand_2 = s.top();
+			s.pop();
+			int	operand_1 = s.top();
+			s.pop();
+			s.push(calc(token, operand_1, operand_2));
+		}
+		else
+			std::__throw_invalid_argument("Invalid token found.");
 	}
-	isChanged = true;
+	if (s.size() != 1)
+		std::__throw_logic_error("Logic error");
 }
 
-std::vector<string>&	RPN::reverseOps(sstream& iss)
+bool	RPN::isValidOp(char c)
 {
-	std::vector<string>	*ops = new std::vector<string>;
-	string				tmp;
-	while(iss >> tmp)
+	return ( c == '+' || c == '-' | c == '*' | c == '/');
+}
+
+int		RPN::calc(char op, int arg1, int arg2)
+{
+	if (op == '+')
+		return (arg1 + arg2);
+	else if (op == '-')
+		return (arg1 - arg2);
+	else if (op == '*')
+		return (arg1 * arg2);
+	else if (op == '/')
 	{
-		ops->push_back(tmp);
+		if (arg2 == 0)
+			std::__throw_runtime_error("Division by zero.");
+		return (arg1 / arg2);
 	}
-	std::reverse(ops->begin(), ops->end());
-	return *ops;
+	return (0);
 }
 
 int	RPN::getResult()
 {
-	if (isChanged == true)
-	{
-		string	op1;
-		string	op2;
-		int		tmpRes;
-		string	optr;
-		while(!s.empty())
-		{
-			op1 = s.top();
-			s.pop();
-			op2 = s.top();
-			s.pop();
-			if (s.top() == "+")
-				tmpRes = std::atoi(op1.c_str()) + std::atoi(op2.c_str());
-			else if (s.top() == "-")
-				tmpRes = std::atoi(op1.c_str()) - std::atoi(op2.c_str());
-			s.pop();
-			if (s.empty())
-				break;
-			s.push(std::to_string(tmpRes));
-		}
-		res = tmpRes;
-	}
-	return (res);
+	return (s.top());
 }
