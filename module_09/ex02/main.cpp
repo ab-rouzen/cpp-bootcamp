@@ -33,9 +33,10 @@ int	main(int argc, char **argv)
 	// // insert_sort(c1);
 	print_numbers(c1);
 	std::cout << std::endl;
-	mergeInsertSort(makeGroupIterator(c1.begin(), 2),
-					makeGroupIterator(c1.end(), 2));
+	mergeInsertSort(makeGroupIterator(c1.begin(), 1),
+					makeGroupIterator(c1.end(), 1));
 	//merge_sort(c1);
+	print_numbers(c1);
 	std::cout << std::endl;
 	return 0;
 }

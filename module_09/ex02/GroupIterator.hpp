@@ -18,11 +18,15 @@ class	groupIterator
 		
 	// operators:
 		int				operator[](std::size_t index);
-		groupIterator&	operator+(std::size_t step);
-		groupIterator&	operator-(std::size_t step);
+		vecIt			operator()(std::size_t index);
+		groupIterator&	operator+=(std::size_t step);
+		groupIterator	operator+(std::size_t step);
+		groupIterator&	operator-=(std::size_t step);
+		int				operator-(groupIterator &rhs);
 		groupIterator&	operator++(int);
 		groupIterator&	operator--(int);
 		bool			operator!=(groupIterator &rhs);
+		bool			operator==(groupIterator &rhs);
 
 
 	private:
