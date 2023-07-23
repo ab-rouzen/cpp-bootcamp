@@ -64,36 +64,61 @@ void	mergeInsertSort(groupIterator first, groupIterator last)
 	// }
 	// std::cout << std::endl;
 	// create main chain and pend.
+	struct node
+	{
+		groupIterator	elem;
+		int				mainPair;
+	};
+	
 	std::vector<groupIterator>	main;
-	std::vector<groupIterator>	pend;
+	std::vector<node>			pend;
 	for(groupIterator it = first; it != last; it += 2)
 	{
-		pend.push_back(it);
+		pend.push_back((node){it, *(it + 1)});
 		main.push_back(it + 1);
 	}
 	std::cout << "main size: " << main.size() << std::endl;
 	std::cout << "pend size: " << pend.size() << std::endl;
 
-	std::vector<groupIterator>::iterator	pendfirst = pend.begin();
+	std::vector<node>::iterator	pendfirst = pend.begin();
 	//groupIterator	mainIte = makeGroupIterator(main.end(), first.size());
 
 	// insert second element of first pair into the main chain always
-	main.insert(main.begin(), *pendfirst);
+	main.insert(main.begin(), (*pendfirst).elem);
 	int	lastInsertedElem = 1;
 	for(int i = 0;; i++)
 	{
 		int	ji = jbs_numbers[i] - 1;
-		if (ji > size / 2)
-			ji = size / 2;
-		for (int i = ji; i >= lastInsertedElem; i--)
+		if (ji >= size / 2)
+			ji = size / 2 - 1;
+		for (int j = ji; j >= lastInsertedElem; j--)
 		{
 			//binaryInsert(main, makeGroupIterator(main.begin(), itLevel), makeGroupIterator(main.end(), itLevel), pendItb + i);
-			std::vector<groupIterator>::iterator insertPos = std::upper_bound(main.begin(), main.begin() + ji, pend[ji], cmp);
-			main.insert(insertPos, pend[ji]);
+			std::vector<groupIterator>::iterator tmpEnd = std::find(main.begin(), main.end(), pend[j].mainPair);
+			std::vector<groupIterator>::iterator insertPos = \
+			std::upper_bound(main.begin(), tmpEnd, pend[j].elem, cmp);
+			main.insert(insertPos, pend[j].elem);
 		}
-		lastInsertedElem = ji;
-		if (ji == size / 2)
+		lastInsertedElem = ji + 1;
+		if (ji == size / 2 - 1)
 			break;
 	}
-	// 
+
+	// insert straggle element
+	if (is_odd)
+	{
+	std::vector<groupIterator>::iterator insertPos = \
+	std::upper_bound(main.begin(), main.end(), last, cmp);
+	main.insert(insertPos, last);
+	}
+
+	std::vector<int>	tmp;
+	for (std::vector<groupIterator>::iterator mainIt = main.begin(); mainIt != main.end(); mainIt++)
+	{
+		vecIt	begin = (*mainIt).base();
+		vecIt	end = begin + (*mainIt).size();
+		std::move(begin, end, std::back_inserter(tmp));
+	}
+	std::move(tmp.begin(), tmp.end(), first.base());
+	//
 }

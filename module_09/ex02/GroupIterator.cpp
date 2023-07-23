@@ -72,7 +72,17 @@ bool	groupIterator::operator==(groupIterator &rhs)
 	return (this->base() == rhs.base());
 }
 
+bool	groupIterator::operator==(int rhs)
+{
+	return (*(this->base()) == rhs);
+}
+
+int	groupIterator::operator*()
+{
+	return (_it[_size - 1]);
+}
+
 bool	cmp(groupIterator first, groupIterator second)
 {
-	return (first[0] > second[0]);
+	return (first[0] < second[0]);
 }

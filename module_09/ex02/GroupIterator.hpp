@@ -27,7 +27,9 @@ class	groupIterator
 		groupIterator&	operator--(int);
 		bool			operator!=(groupIterator &rhs);
 		bool			operator==(groupIterator &rhs);
+		bool			operator==(int rhs);
 		bool			operator<(groupIterator &rhs);
+		int				operator*();
 
 
 	private:
