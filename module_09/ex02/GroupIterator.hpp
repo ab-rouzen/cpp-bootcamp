@@ -27,6 +27,7 @@ class	groupIterator
 		groupIterator&	operator--(int);
 		bool			operator!=(groupIterator &rhs);
 		bool			operator==(groupIterator &rhs);
+		bool			operator<(groupIterator &rhs);
 
 
 	private:
@@ -36,4 +37,5 @@ class	groupIterator
 		groupIterator() {};
 };
 
+bool	cmp(groupIterator first, groupIterator second);
 #endif	// ! GROUP_ITERATOR

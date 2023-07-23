@@ -71,3 +71,8 @@ bool	groupIterator::operator==(groupIterator &rhs)
 {
 	return (this->base() == rhs.base());
 }
+
+bool	cmp(groupIterator first, groupIterator second)
+{
+	return (first[0] > second[0]);
+}

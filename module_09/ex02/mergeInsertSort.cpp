@@ -64,30 +64,32 @@ void	mergeInsertSort(groupIterator first, groupIterator last)
 	// }
 	// std::cout << std::endl;
 	// create main chain and pend.
-	std::vector<int>	main;
-	std::vector<int>	pend;
+	std::vector<groupIterator>	main;
+	std::vector<groupIterator>	pend;
 	for(groupIterator it = first; it != last; it += 2)
 	{
-		pend.insert(pend.end(), it.base(), it.base() + it.size());
-		main.insert(main.end(), (it + 1).base(), (it + 1).base() + (it + 1).size());
+		pend.push_back(it);
+		main.push_back(it + 1);
 	}
 	std::cout << "main size: " << main.size() << std::endl;
 	std::cout << "pend size: " << pend.size() << std::endl;
 
-	groupIterator	pendItb = makeGroupIterator(pend.begin(), first.size());
-	groupIterator	mainIte = makeGroupIterator(main.end(), first.size());
-	int	lastInsertedElem = 1;
+	std::vector<groupIterator>::iterator	pendfirst = pend.begin();
+	//groupIterator	mainIte = makeGroupIterator(main.end(), first.size());
 
 	// insert second element of first pair into the main chain always
-	main.insert(main.begin(), pendItb.base(), pendItb.base() + pendItb.size());
+	main.insert(main.begin(), *pendfirst);
+	int	lastInsertedElem = 1;
 	for(int i = 0;; i++)
 	{
-		int	ji = jbs_numbers[i];
+		int	ji = jbs_numbers[i] - 1;
 		if (ji > size / 2)
 			ji = size / 2;
-		for (int i = ji; i > lastInsertedElem; i--)
+		for (int i = ji; i >= lastInsertedElem; i--)
 		{
-			binaryInsert(main, makeGroupIterator(main.begin(), itLevel), makeGroupIterator(main.end(), itLevel), pendItb + i);
+			//binaryInsert(main, makeGroupIterator(main.begin(), itLevel), makeGroupIterator(main.end(), itLevel), pendItb + i);
+			std::vector<groupIterator>::iterator insertPos = std::upper_bound(main.begin(), main.begin() + ji, pend[ji], cmp);
+			main.insert(insertPos, pend[ji]);
 		}
 		lastInsertedElem = ji;
 		if (ji == size / 2)
