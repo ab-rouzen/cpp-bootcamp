@@ -40,4 +40,5 @@ class	groupIterator
 };
 
 bool	cmp(groupIterator first, groupIterator second);
+
 #endif	// ! GROUP_ITERATOR
