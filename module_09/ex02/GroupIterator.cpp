@@ -4,6 +4,28 @@ groupIterator::groupIterator(vecIt it, std::size_t size)
 	: _it(it), _size(size)
 {}
 
+// groupIterator::groupIterator(groupIterator &copy)
+// {
+// 	this->_it = copy._it;
+// 	this->_size = copy._size;
+// }
+
+groupIterator::groupIterator(const groupIterator &copy)
+{
+	this->_it = copy._it;
+	this->_size = copy._size;
+}
+
+groupIterator &groupIterator::operator=(const groupIterator &copy)
+{
+	if (this != &copy)
+	{
+		this->_it = copy._it;
+		this->_size = copy._size;
+	}
+	return (*this);
+}
+
 groupIterator::~groupIterator()
 {}
 

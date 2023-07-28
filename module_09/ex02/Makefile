@@ -1,10 +1,21 @@
 NAME = PmergeMe
-SRCS = main.cpp GroupIterator.cpp mergeInsertSort.cpp
-INCLUDE = GroupIterator.hpp
+
+SRCS = 	main.cpp \
+		PmergeMe.cpp \
+		GroupIterator.cpp \
+		mergeInsertSort.cpp
+
+INCLUDE = 	GroupIterator.hpp \
+			PmergeMe.cpp
+
 BUILD_DIR = build/
+
 STD = -std=c++98
+
 FLAGS = -g -Wall -Wextra #-Werror
+
 OBJS = $(SRCS:%.cpp=$(BUILD_DIR)%.o)
+
 CC = g++
 
 all : $(NAME)

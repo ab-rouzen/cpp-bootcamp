@@ -1,5 +1,5 @@
 #ifndef GROUP_ITERATOR_HPP
-#define  GROUP_ITERATOR_HPP
+#define GROUP_ITERATOR_HPP
 
 #include<algorithm>
 #include<iterator>
@@ -13,6 +13,9 @@ class	groupIterator
 	public:
 		groupIterator(vecIt it, std::size_t size);
 		~groupIterator();
+		// explicit groupIterator(groupIterator &copy);
+		groupIterator(const groupIterator &copy);
+		groupIterator&	operator=(const groupIterator &copy);
 		vecIt&	base();
 		std::size_t	size();
 		
