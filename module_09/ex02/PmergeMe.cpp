@@ -1,21 +1,18 @@
-#include "PmergeMe.hpp"
+// #include "PmergeMe.hpp"
 
-// PmergeMe::PmergeMe(){
+// PmergeMe::PmergeMe(const PmergeMe &copy) : cont(copy.cont){
 // }
 
-PmergeMe::PmergeMe(const PmergeMe &copy) : cont(copy.cont){
-}
+// PmergeMe&   PmergeMe::operator=(const PmergeMe &copy){
+// }
 
-PmergeMe&   PmergeMe::operator=(const PmergeMe &copy){
-}
+// PmergeMe::~PmergeMe(){
+// }
 
-PmergeMe::~PmergeMe(){
-}
+// PmergeMe::PmergeMe(std: :vector<int>&vec) : cont(vec){
+// }
 
-PmergeMe::PmergeMe(std::vector<int> &vec) : cont(vec){
-}
-
-void    PmergeMe::sort(){
-    mergeInsertSort(makeGroupIterator(cont.begin(), 1),
-                    makeGroupIterator(cont.end(), 1));
-}
+// void    PmergeMe::sort(){
+//     mergeInsertSort(makeGroupIterator(cont.begin(), 1),
+//                     makeGroupIterator(cont.end(), 1));
+// }

@@ -5,43 +5,120 @@
 #include<iterator>
 #include<iostream>
 #include<vector>
+#include<deque>
 
+typedef	std::vector<int> vec;
 typedef	std::vector<int>::iterator vecIt;
+typedef	std::deque<int> deq;
+typedef	std::deque<int>::iterator deqIt;
 
+template<typename C>
 class	groupIterator
 {
 	public:
-		groupIterator(vecIt it, std::size_t size);
-		~groupIterator();
-		// explicit groupIterator(groupIterator &copy);
-		groupIterator(const groupIterator &copy);
-		groupIterator&	operator=(const groupIterator &copy);
-		vecIt&	base();
-		std::size_t	size();
+ 
+		typedef	C&	reference;
+		typedef	typename C::iterator iterator_type;
+	
+		groupIterator(iterator_type it, std::size_t size)
+			: _it(it), _size(size)
+		{}
+		~groupIterator()
+		{}
+		groupIterator(const groupIterator &copy)
+		{
+			this->_it = copy._it;
+			this->_size = copy._size;
+		}
+		groupIterator&	operator=(const groupIterator &copy)
+		{
+			if (this != &copy)
+			{
+				this->_it = copy._it;
+				this->_size = copy._size;
+			}
+			return (*this);
+		}
+		iterator_type&	base()
+		{
+			return (_it);
+		}
+		std::size_t	size()
+		{
+			return (_size);
+		}
 		
 	// operators:
-		int				operator[](std::size_t index);
-		vecIt			operator()(std::size_t index);
-		groupIterator&	operator+=(std::size_t step);
-		groupIterator	operator+(std::size_t step);
-		groupIterator&	operator-=(std::size_t step);
-		int				operator-(groupIterator &rhs);
-		groupIterator&	operator++(int);
-		groupIterator&	operator--(int);
-		bool			operator!=(groupIterator &rhs);
-		bool			operator==(groupIterator &rhs);
-		bool			operator==(int rhs);
-		bool			operator<(groupIterator &rhs);
-		int				operator*();
+		int				operator[](std::size_t index)
+		{
+			return (_it[_size * index + _size - 1]); // get last element, largest.
+		}
+		iterator_type	operator()(std::size_t index)
+		{
+			return (_it + _size * index + _size);
+		}
+		groupIterator&	operator+=(std::size_t step)
+		{
+			_it += step * _size;
+			return (*this);
+		}
+		groupIterator	operator+(std::size_t step)
+		{
+			return (groupIterator(_it + step * _size, _size));
+		}
+		groupIterator&	operator-=(std::size_t step)
+		{
+			_it -= step * _size;
+			return (*this);
+		}
+		int				operator-(groupIterator &rhs)
+		{
+			return (((*this).base() - rhs.base()) / _size);
+		}
+		groupIterator&	operator++(int)
+		{
+			_it += _size;
+			return (*this);
+		}
+		groupIterator&	operator--(int)
+		{
+			_it -= _size;
+			return (*this);
+		}
+		bool			operator!=(groupIterator &rhs)
+		{
+			return (this->base() != rhs.base());
+		}
+		bool			operator==(groupIterator &rhs)
+		{
+			return (this->base() == rhs.base());
+		}
+		bool			operator==(int rhs)
+		{
+			return (*(this->base()) == rhs);
+		}
+		bool			operator<(groupIterator &rhs)
+		{
+			*this < *rhs;
+		}
+		int				operator*()
+		{
+			return (_it[_size - 1]);
+		}
 
 
 	private:
-		vecIt		_it;
-		std::size_t	_size;
+		iterator_type		_it;
+		std::size_t			_size;
 
 		groupIterator() {};
 };
 
-bool	cmp(groupIterator first, groupIterator second);
+template<typename T>
+bool	cmp(T first, T second)
+{
+	return (first[0] < second[0]);
+}
+// bool	cmp(groupIterator<deq> first, groupIterator<deq> second);
 
 #endif	// ! GROUP_ITERATOR
