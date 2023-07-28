@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <map>
+#include <utility>
 
 template<class C>
 void	print_numbers(C container_type)
@@ -21,11 +23,20 @@ int	main(int argc, char **argv)
 {
 	if (argc < 2)
 		return (1);
-	std::vector<int>	c1;
-	std::deque<int>		c2;
+
+	std::vector<int>		c1;
+	std::deque<int>			c2;
+	std::map<int, char>		m;
+
 	for (int i = 1; argv[i]; i++){
-		c1.push_back(std::atoi(argv[i]));
-		c2.push_back(std::atoi(argv[i]));
+		int val = std::atoi(argv[i]);
+		c1.push_back(val);
+		c2.push_back(val);
+		if (m.insert(std::make_pair(val, 'c')).second == false)
+		{
+			std::cout << "duplicate values found." << std::endl;
+			return (1);
+		}
 	}
 	print_numbers(c1);
 	std::cout << std::endl;

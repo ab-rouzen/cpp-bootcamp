@@ -179,7 +179,7 @@ void	mergeInsertSort(groupIterator<deq> first, groupIterator<deq> last)
 			break;
 	}
 
-	// insert odd element is present
+	// insert odd element if present
 	if (is_odd){
 		std::deque<groupIterator<deq> >::iterator insertPos = \
 		std::upper_bound(main.begin(), main.end(), last, cmp<groupIterator<deq> >);
