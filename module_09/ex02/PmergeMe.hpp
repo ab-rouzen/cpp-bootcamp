@@ -21,6 +21,7 @@ class	PmergeMe
 
     private:
         PmergeMe&   operator=(const PmergeMe &copy){
+            (void) copy;
             return(*this);
         };
         container_type    &cont;
