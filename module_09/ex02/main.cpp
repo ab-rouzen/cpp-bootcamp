@@ -31,11 +31,18 @@ int	main(int argc, char **argv)
 
 	struct timeval lapse[4];
 
+	std::vector<int>		tmp;
+	for (int i = 1; argv[i]; i++){
+		std::map<int, char>		m;
+		int val = std::atoi(argv[i]);
+		tmp.push_back(val);
+	}
+
 	/* Data processing and sorting for vector */
 	gettimeofday(&lapse[0], NULL);
 	std::vector<int>		c1;
+	std::map<int, char>		m;
 	for (int i = 1; argv[i]; i++){
-		std::map<int, char>		m;
 		int val = std::atoi(argv[i]);
 		c1.push_back(val);
 		if (m.insert(std::make_pair(val, 'c')).second == false || val < 0)
@@ -51,11 +58,11 @@ int	main(int argc, char **argv)
 	/* Data processing and sorting for deque */
 	gettimeofday(&lapse[2], NULL);
 	std::deque<int>			c2;
+	std::map<int, char>		m2;
 	for (int i = 1; argv[i]; i++){
-		std::map<int, char>		m;
 		int val = std::atoi(argv[i]);
 		c2.push_back(val);
-		if (m.insert(std::make_pair(val, 'c')).second == false || val < 0)
+		if (m2.insert(std::make_pair(val, 'c')).second == false || val < 0)
 		{
 			std::cout << "duplicate or negative values found." << std::endl;
 			return (1);
@@ -67,7 +74,7 @@ int	main(int argc, char **argv)
 
  	/* reporting performance for each  container type */
 	std::cout << "Before : ";
-	print_numbers(c1);
+	print_numbers(tmp);
 	std::cout << std::endl;
 	std::cout << "After  : ";
 	print_numbers(c1);

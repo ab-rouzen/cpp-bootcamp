@@ -17,5 +17,4 @@ struct dNode
 };
 
 
-
 #endif	// ! MERGE_INSERTION_SORT_HPP
