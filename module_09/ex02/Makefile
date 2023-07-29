@@ -1,13 +1,12 @@
 NAME = PmergeMe
 
 SRCS = 	main.cpp \
-		PmergeMe.cpp \
 		GroupIterator.cpp \
 		mergeInsertSort.cpp
 
 INCLUDE = 	GroupIterator.hpp \
 			mergeInsertSort.hpp \
-			PmergeMe.cpp
+			PmergeMe.hpp
 
 BUILD_DIR = build/
 

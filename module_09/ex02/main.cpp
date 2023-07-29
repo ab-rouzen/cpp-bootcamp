@@ -5,7 +5,6 @@
 #include <vector>
 #include <map>
 #include <utility>
-#include <ctime>
 #include <sys/time.h>
 
 template<class C>
@@ -30,13 +29,31 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 
-	std::vector<int>		c1;
-	std::deque<int>			c2;
-	std::map<int, char>		m;
+	struct timeval lapse[4];
 
+	/* Data processing and sorting for vector */
+	gettimeofday(&lapse[0], NULL);
+	std::vector<int>		c1;
 	for (int i = 1; argv[i]; i++){
+		std::map<int, char>		m;
 		int val = std::atoi(argv[i]);
 		c1.push_back(val);
+		if (m.insert(std::make_pair(val, 'c')).second == false || val < 0)
+		{
+			std::cout << "duplicate or negative values found." << std::endl;
+			return (1);
+		}
+	}
+	PmergeMe<std::vector<int> >	merge(c1);
+	merge.sort();
+	gettimeofday(&lapse[1], NULL);
+
+	/* Data processing and sorting for deque */
+	gettimeofday(&lapse[2], NULL);
+	std::deque<int>			c2;
+	for (int i = 1; argv[i]; i++){
+		std::map<int, char>		m;
+		int val = std::atoi(argv[i]);
 		c2.push_back(val);
 		if (m.insert(std::make_pair(val, 'c')).second == false || val < 0)
 		{
@@ -44,21 +61,17 @@ int	main(int argc, char **argv)
 			return (1);
 		}
 	}
-	struct timeval lapse[4];
+	PmergeMe<std::deque<int> >	merge2(c2);
+	merge2.sort();
+	gettimeofday(&lapse[3], NULL);
+
+ 	/* reporting performance for each  container type */
 	std::cout << "Before : ";
 	print_numbers(c1);
 	std::cout << std::endl;
-	PmergeMe<std::vector<int> >	merge(c1);
-	gettimeofday(&lapse[0], NULL);
-	merge.sort();
-	gettimeofday(&lapse[1], NULL);
 	std::cout << "After  : ";
 	print_numbers(c1);
 	std::cout << std::endl;
-	PmergeMe<std::deque<int> >	merge2(c2);
-	gettimeofday(&lapse[2], NULL);
-	merge2.sort();
-	gettimeofday(&lapse[3], NULL);
 	std::cout  <<  "time elpased processing sequence for std::vector: "<< getDiffTime(&lapse[0], &lapse[1]) << " us" << std::endl; 
 	std::cout  <<  "time elpased processing sequence for std::deque	: "<< getDiffTime(&lapse[2], &lapse[3]) << " us" << std::endl; 
 	return 0;
