@@ -6,13 +6,14 @@ SRCS = 	main.cpp \
 		mergeInsertSort.cpp
 
 INCLUDE = 	GroupIterator.hpp \
+			mergeInsertSort.hpp \
 			PmergeMe.cpp
 
 BUILD_DIR = build/
 
 STD = -std=c++98
 
-FLAGS = -g -Wall -Wextra #-Werror
+FLAGS = -g -Wall -Wextra -Werror
 
 OBJS = $(SRCS:%.cpp=$(BUILD_DIR)%.o)
 
@@ -28,6 +29,10 @@ $(BUILD_DIR)%.o : %.cpp $(INCLUDE)
 	@mkdir -p $(BUILD_DIR)
 	$(CC) $(FLAGS) $(STD) -c $< -o $@
 
-clean : 
+clean :
 	rm -rf $(BUILD_DIR)
+
+fclean : clean
 	rm -rf $(NAME)
+
+re :	fclean all

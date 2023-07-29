@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 	std::ifstream	request(argv[1]);
 	if (!inputData.is_open() || !request.is_open())
 	{
-		std::cout << "Error opening file" << std::endl;
+		std::cout << "Error opening files." << std::endl;
 		return(1);
 	}
 	try
@@ -37,19 +37,27 @@ void	printBtxValues(bitcoinExchange& btx, std::ifstream &request)
 {
 	std::string	buf;
 	std::getline(request, buf); // skip first line
+	if (buf != "date | value")
+		std::__throw_runtime_error("Unkown request format.");
 	while (std::getline(request, buf))
 	{
 		std::istringstream	ibuf(buf);
 		double				balance;
 		std::string			strDate;
-		Date				tmpDate;
+		Date				tmpDate(1970, 1, 1);
 		if (buf.find('|') == std::string::npos)
 		{
 			std::cout << "Error: bad input => " << buf << std::endl;
 			continue;
 		}
 		std::getline(ibuf, strDate, '|');
-		tmpDate = Date(strDate);
+		try {
+			tmpDate = Date(strDate);
+		}
+		catch (std::exception&){
+			std::cout << "Error: Date is out of bounds. " << std::endl;
+			continue;
+		}
 		ibuf >> balance;
 		if (balance < 0 || balance > 1000)
 		{

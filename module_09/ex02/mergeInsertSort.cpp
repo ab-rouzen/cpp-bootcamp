@@ -1,16 +1,7 @@
 #include "GroupIterator.hpp"
+#include "mergeInsertSort.hpp"
 
 /* =============== FOR VECTOR ================= */
-
-groupIterator<vec>	makeGroupIterator(groupIterator<vec> &it, std::size_t size)
-{
-	return (groupIterator<vec>(it.base(), size * it.size()));
-}
-
-groupIterator<vec>	makeGroupIterator(vecIt it, std::size_t size)
-{
-	return (groupIterator<vec>(it, size));
-}
 
 void	swap_iter(groupIterator<vec> begin, groupIterator<vec> end)
 {
@@ -23,7 +14,7 @@ void	mergeInsertSort(groupIterator<vec> first, groupIterator<vec> last)
 {
 	// maxing at 3000 numbers sorted - chached array of jacobsthal numbers
 	int	jbs_numbers[] = {3, 5, 11, 21, 43, 85, 170, 341, 683, 1365, 2731, 5461};
-	size_t size = last - first;
+	int size = last - first;
 	if (size < 2)
 		return ;
 
@@ -41,24 +32,17 @@ void	mergeInsertSort(groupIterator<vec> first, groupIterator<vec> last)
 	// recursively merge insert resulting sequence of largest pairs
 	mergeInsertSort(makeGroupIterator(first, 2),\
 					makeGroupIterator(last,  2));
-	
-	// need this struct to keep track of corresponding main chain elements for pend
-	struct node
-	{
-		groupIterator<vec>	elem;
-		int					mainPair;
-	};
 
 	// separate main chain and pend into different sequences
 	std::vector<groupIterator<vec> >	main;
-	std::vector<node>			pend;
+	std::vector<vNode>			pend;
 	for(groupIterator<vec> it = first; it != last; it += 2){
-		pend.push_back((node){it, *(it + 1)});
+		pend.push_back((vNode){it, *(it + 1)});
 		main.push_back(it + 1);
 	}
 
 	// insert second element of first pair from pend into the main chain, always.
-	std::vector<node>::iterator	pendfirst = pend.begin();
+	std::vector<vNode>::iterator	pendfirst = pend.begin();
 	main.insert(main.begin(), (*pendfirst).elem);
 	int	lastInsertedElem = 1;
 	
@@ -101,16 +85,6 @@ void	mergeInsertSort(groupIterator<vec> first, groupIterator<vec> last)
 
 /* =============== FOR DEQUE ================= */
 
-groupIterator<deq>	makeGroupIterator(groupIterator<deq> &it, std::size_t size)
-{
-	return (groupIterator<deq>(it.base(), size * it.size()));
-}
-
-groupIterator<deq>	makeGroupIterator(deqIt it, std::size_t size)
-{
-	return (groupIterator<deq>(it, size));
-}
-
 void	swap_iter(groupIterator<deq> begin, groupIterator<deq> end)
 {
 	std::swap_ranges(begin.base(), begin.base() + begin.size(), end.base());
@@ -122,7 +96,7 @@ void	mergeInsertSort(groupIterator<deq> first, groupIterator<deq> last)
 {
 	// maxing at 3000 numbers sorted - chached array of jacobsthal numbers
 	int	jbs_numbers[] = {3, 5, 11, 21, 43, 85, 170, 341, 683, 1365, 2731, 5461};
-	size_t size = last - first;
+	int size = last - first;
 	if (size < 2)
 		return ;
 
@@ -140,24 +114,17 @@ void	mergeInsertSort(groupIterator<deq> first, groupIterator<deq> last)
 	// recursively merge insert resulting sequence of largest pairs
 	mergeInsertSort(makeGroupIterator(first, 2),\
 					makeGroupIterator(last,  2));
-	
-	// need this struct to keep track of corresponding main chain elements for pend
-	struct node
-	{
-		groupIterator<deq>	elem;
-		int					mainPair;
-	};
 
 	// separate main chain and pend into different sequences
 	std::deque<groupIterator<deq> >	main;
-	std::deque<node>			pend;
+	std::deque<dNode>			pend;
 	for(groupIterator<deq> it = first; it != last; it += 2){
-		pend.push_back((node){it, *(it + 1)});
+		pend.push_back((dNode){it, *(it + 1)});
 		main.push_back(it + 1);
 	}
 
 	// insert second element of first pair from pend into the main chain, always.
-	std::deque<node>::iterator	pendfirst = pend.begin();
+	std::deque<dNode>::iterator	pendfirst = pend.begin();
 	main.insert(main.begin(), (*pendfirst).elem);
 	int	lastInsertedElem = 1;
 	

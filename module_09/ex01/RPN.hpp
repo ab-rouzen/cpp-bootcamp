@@ -16,16 +16,16 @@ class	RPN
 {
 	public:
 		RPN(const string& exp);
-		// RPN(const RPN& copy);
-		// RPN&	operator=(const RPN& copy);
-		// ~RPN();
-		//void	setExp(const string& exp);
+		~RPN();
+		void	setExp(const string& exp);
 		int		getResult();
 
 	private:
 		bool				isValidOp(char c);
 		int					calc(char op, int arg1, int arg2);
 		std::stack<int>		s;
+		RPN(const RPN& copy);
+		RPN&	operator=(const RPN& copy);
 };
 
 #endif // ! RPN_HPP

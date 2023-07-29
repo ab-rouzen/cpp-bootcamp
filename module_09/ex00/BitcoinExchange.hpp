@@ -15,15 +15,16 @@ typedef std::ifstream ifstream;
 class	bitcoinExchange
 {
 	public:
-		bitcoinExchange();
+		bitcoinExchange(ifstream& input);
 		bitcoinExchange(const bitcoinExchange& copy);
 		bitcoinExchange&	operator=(const bitcoinExchange& copy);
 		~bitcoinExchange();
-		bitcoinExchange(ifstream& input);
 		float	getRate(Date& d);
 
 	private:
 		std::map<Date, float> data;
+		
+		bitcoinExchange();
 };
 
 #endif	// ! BITCOIN_EXCHANGE_HPP

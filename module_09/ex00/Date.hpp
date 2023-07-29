@@ -10,7 +10,6 @@ class	Date
 {
 	public:
 		Date(std::string &date);
-		Date();
 		Date(int Y, int M, int D);
 		Date(const Date& copy);
 		Date&	operator=(const Date& copy);
@@ -26,6 +25,7 @@ class	Date
 		int	month;
 		int	day;
 		int dateDayVal;
+		Date();
 };
 
 std::ostream&	operator<<(std::ostream& os, const Date& d);

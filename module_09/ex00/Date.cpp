@@ -3,26 +3,26 @@
 Date::Date(std::string &date)
 {
 	std::istringstream	ibuf(date);
-	char				skip;
-	ibuf >> year >> skip >> month >> skip >> day;
-	if (year < 0 || month < 1  || month > 12 | day < 1 || day > 31)
+	char				skip, skip2;
+	ibuf >> year >> skip >> month >> skip2 >> day;
+	if (skip != '-' || skip2 != '-')
+		std::__throw_runtime_error("Date is invalid.");
+	else if (year < 1800 || year > 3000 || month < 1  || month > 12 | day < 1 || day > 31)
 		std::__throw_runtime_error("Date is invalid.");
 	dateDayVal = year * 365 + month * 30 + day;
 };
 
 Date::Date(int Y, int M, int D)
 {
-	// some checks here?
 	year = Y;
 	month = M;
 	day = D;
+	if (year < 1800 || year > 3000 || month < 1  || month > 12 | day < 1 || day > 31)
+		std::__throw_runtime_error("Date is invalid.");
+	dateDayVal = year * 365 + month * 30 + day;
 };
 
-Date::Date()
-{
-	year = 0;
-	month = 1;
-	day = 1;
+Date::Date() {
 };
 
 Date::Date(const Date& copy)

@@ -29,6 +29,8 @@ bitcoinExchange::bitcoinExchange(ifstream& input)
 
 	// Input example: '2023-03-23,3.4'
 	std::getline(input, buf); // skip first line
+	if (buf != "date,exchange_rate")
+		std::__throw_runtime_error("Unkown database format.");
 	while(std::getline(input, buf))
 	{
 		std::stringstream ibuf(buf);

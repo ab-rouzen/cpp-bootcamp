@@ -3,12 +3,9 @@
 #include "Defs.hpp"
 #include <iostream>
 #include <vector>
-#include <sstream>
 #include <map>
 #include <utility>
 #include <ctime>
-#include <iomanip>
-#include <unistd.h>
 #include <sys/time.h>
 
 template<class C>

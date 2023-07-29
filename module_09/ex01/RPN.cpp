@@ -25,6 +25,19 @@ RPN::RPN(const string& exp)
 		std::__throw_logic_error("Logic error");
 }
 
+RPN::RPN(const RPN& copy) {
+	(void) copy;
+}
+
+RPN&	RPN::operator=(const RPN &copy) {
+	(void) copy;
+	return (*this);
+}
+
+RPN::~RPN() {
+	
+}
+
 bool	RPN::isValidOp(char c)
 {
 	return ( c == '+' || c == '-' | c == '*' | c == '/');

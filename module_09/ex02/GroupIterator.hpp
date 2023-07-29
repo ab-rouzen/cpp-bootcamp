@@ -119,6 +119,11 @@ bool	cmp(T first, T second)
 {
 	return (first[0] < second[0]);
 }
-// bool	cmp(groupIterator<deq> first, groupIterator<deq> second);
+
+// create a new groupIterator objet from argument iterator and size
+groupIterator<vec>	makeGroupIterator(groupIterator<vec> &it, std::size_t size);
+groupIterator<vec>	makeGroupIterator(vecIt it, std::size_t size);
+groupIterator<deq>	makeGroupIterator(groupIterator<deq> &it, std::size_t size);
+groupIterator<deq>	makeGroupIterator(deqIt it, std::size_t size);
 
 #endif	// ! GROUP_ITERATOR
